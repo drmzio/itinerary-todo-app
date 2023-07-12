@@ -1,27 +1,48 @@
-/* eslint-env node */
-
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+    tailwindcss: {
+      callees: ['cn'],
+      config: 'tailwind.config.js'
+    }
+  },
+  env: {
+    browser: true,
+    amd: true,
+    node: true,
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:tailwindcss/recommended',
+    'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended', // Make sure this is always the last element in the array.
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: true,
-    tsconfigRootDir: __dirname,
-  },
-  plugins: ['react-refresh'],
+  plugins: ['prettier', 'react-refresh', 'tailwindcss'],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
-    '@typescript-eslint/no-non-null-assertion': 'off',
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'tailwindcss/no-custom-classname': 'off',
+    'tailwindcss/classnames-order': 'error',
   },
 }
