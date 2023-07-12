@@ -35,6 +35,18 @@ const todoItems = [
   {
     value: 'Do this other thingy that is longer than the first thingy',
   },
+  {
+    value: 'Do this thingy',
+  },
+  {
+    value: 'Do this other thingy that is longer than the first thingy',
+  },
+  {
+    value: 'Do this thingy',
+  },
+  {
+    value: 'Do this other thingy that is longer than the first thingy',
+  },
 ];
 
 export default function Todo() {
