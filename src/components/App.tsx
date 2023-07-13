@@ -16,18 +16,20 @@ window.matchMedia('(prefers-color-scheme: dark)').addListener(async (status) => 
 export default function App() {
   return (
     <div className="mx-auto flex max-w-screen-sm flex-col">
-      <header className="fixed left-0 top-0 z-50 w-full shrink-0 border-b bg-gray-200/30 backdrop-blur-md">
+      <header className="fixed left-0 top-0 z-50 w-full shrink-0 border-b bg-gray-200/50 backdrop-blur-md dark:border-gray-700 dark:bg-black/50">
         <div className="mx-auto max-w-screen-sm">
           <div className="flex h-16 items-center px-3">
             <div className="mr-auto" />
             <div className="shrink-0">
-              <h1 className="cursor-default text-xl font-semibold">My Itineraries</h1>
+              <h1 className="cursor-default text-xl font-semibold dark:text-white">
+                My Itineraries
+              </h1>
             </div>
             <div className="ml-auto" />
             <div>
               <button
                 type="button"
-                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-transparent text-gray-600 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-transparent text-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:text-gray-300"
               >
                 <Settings />
               </button>
@@ -35,7 +37,7 @@ export default function App() {
           </div>
         </div>
       </header>
-      <nav className="fixed bottom-0 left-0 z-50 w-full shrink-0 border-t bg-gray-200/30 backdrop-blur-md">
+      <nav className="fixed bottom-0 left-0 z-50 w-full shrink-0 border-t bg-gray-200/50 backdrop-blur-md dark:border-gray-700 dark:bg-black/50">
         <div className="mx-auto max-w-screen-sm">
           <div className="flex h-16 items-center px-3">
             <button
