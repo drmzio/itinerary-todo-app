@@ -12,6 +12,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { Checkbox } from 'konsta/react';
 
 const todoGroups = [
   {
@@ -194,11 +195,8 @@ export default function Todo() {
             key={todoGroup.id}
             className="ui-timeline relative overflow-hidden bg-white dark:bg-gray-900"
           >
-            <StickyHeader
-              offsetTop={64}
-              className="static left-0 top-0 z-40 w-full shrink-0 border-b bg-gray-200/30 backdrop-blur-md dark:border-gray-700 dark:bg-black/30"
-            >
-              <div className="mx-auto max-w-screen-sm">
+            <StickyHeader offsetTop={64} className="static left-0 top-0 z-40 w-full shrink-0">
+              <div className="relative bg-gray-200/30 hairline-b translucent dark:border-gray-700 dark:bg-black/30">
                 <div className="flex h-12 items-center px-3">
                   <div className="shrink-0">
                     <h1 className="cursor-default text-lg font-semibold dark:text-white">
@@ -219,7 +217,15 @@ export default function Todo() {
                   })}
                 >
                   <div className="ui-timeline-divider absolute left-[27px] top-[calc(56px/2)] z-[1] h-full border-l-2 border-dashed border-gray-300 dark:border-gray-700" />
-                  <div className="absolute left-0 top-0 z-[2]">
+                  <div className="absolute left-0 top-0 flex h-14 w-14 items-center justify-center">
+                    <div className="z-[2] flex h-8 w-8 items-center justify-center rounded-full bg-gray-800">
+                      <Checkbox
+                        name="checkbox-1"
+                        defaultChecked={false}
+                      />
+                    </div>
+                  </div>
+                  {/*<div className="absolute left-0 top-0 z-[2]">
                     <label className="relative flex h-14 w-14 select-none items-center justify-center rounded-full">
                       <input
                         type="checkbox"
@@ -230,7 +236,7 @@ export default function Todo() {
                         aria-hidden="true"
                       ></div>
                     </label>
-                  </div>
+                  </div>*/}
                   <div className="flex rounded-xl border-2 border-transparent bg-gray-100 dark:bg-gray-800">
                     <div className="h-14 w-14 shrink-0"></div>
                     <div className="flex grow flex-col p-3 pl-0">
