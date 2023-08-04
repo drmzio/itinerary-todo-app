@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Todo from '~/components/Todo';
-import { App as KonstaApp, Block, Button, Icon, Link, Navbar, NavbarBackLink, Page, Toolbar } from 'konsta/react';
+import { App as KonstaApp, Icon, Link, Navbar, NavbarBackLink, Page, Toolbar } from 'konsta/react';
 // import { StatusBar, Style } from '@capacitor/status-bar';
 import { Plus } from 'framework7-icons/react';
 
