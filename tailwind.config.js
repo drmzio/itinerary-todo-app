@@ -9,13 +9,8 @@ export default konstaConfig({
     extend: {
       colors: {
         gray: colors.neutral,
-        'ios-light-surface': '#fff',
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms')({
-      strategy: 'class'
-    })
-  ],
+  plugins: [],
 });

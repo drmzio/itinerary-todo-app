@@ -1,10 +1,18 @@
 import clsx from 'clsx';
 import React, {
-  ChangeEvent, useRef,
+  createContext,
+  CSSProperties,
+  Dispatch,
+  Fragment,
+  HTMLAttributes,
+  SetStateAction,
+  useCallback,
+  useContext,
+  useLayoutEffect,
+  useMemo,
   useState,
 } from 'react';
-import { Block, BlockTitle, Checkbox, ListInput } from 'konsta/react';
-import TextareaAutosize from 'react-textarea-autosize';
+import { Block, BlockTitle, Checkbox } from 'konsta/react';
 
 const todoGroups = [
   {
@@ -201,7 +209,7 @@ export default function Todo() {
             Monday
           </BlockTitle>
           <Block>
-            <ul className="ui-list relative flex flex-col gap-2">
+            <ul className="ui-list relative mb-2 flex flex-col gap-2">
               {todoGroup.items.map((todoItem, i) => (
                 <li
                   key={i}
@@ -210,6 +218,14 @@ export default function Todo() {
                   })}
                 >
                   <div className="ui-timeline-divider absolute left-[27px] top-[calc(56px/2)] z-[1] h-full border-l border-dashed border-gray-300 dark:border-gray-700" />
+                  <div className="absolute left-0 top-0 flex h-14 w-14 items-center justify-center">
+                    <div className="z-[2] flex h-8 w-8 items-center justify-center rounded-full dark:bg-gray-900">
+                      <Checkbox
+                        name="checkbox-1"
+                        defaultChecked={false}
+                      />
+                    </div>
+                  </div>
                   {/*<div className="absolute left-0 top-0 z-[2]">
                     <label className="relative flex h-14 w-14 select-none items-center justify-center rounded-full">
                       <input
@@ -222,9 +238,19 @@ export default function Todo() {
                       ></div>
                     </label>
                   </div>*/}
-                  <TodoItem
-                    value={todoItem.value}
-                  />
+                  <div className="flex rounded-xl border-2 border-transparent bg-gray-100 dark:bg-gray-900">
+                    <div className="h-14 w-14 shrink-0"></div>
+                    <div className="flex grow flex-col p-3 pl-0">
+                      <div className="-ml-2">
+                        <div className="inline-flex h-6 cursor-default items-center rounded-full bg-transparent px-2 text-base text-gray-600 hover:bg-gray-200 dark:text-gray-400">
+                          {`3:30 PM`}
+                        </div>
+                      </div>
+                      <div className="text-lg font-medium text-gray-800 dark:text-white">
+                        {todoItem.value}
+                      </div>
+                    </div>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -233,77 +259,4 @@ export default function Todo() {
       ))}
     </div>
   );
-}
-
-interface TodoItemProps {
-  value: string;
-  checked?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
-}
-
-function TodoItem({ value }: TodoItemProps) {
-  const inputRef = useRef<HTMLTextAreaElement>();
-  const [isEdit, setIsEdit] = useState(false);
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setChecked(e.target.checked);
-  }
-
-  const handleClick = () => {
-    setIsEdit(true);
-    setTimeout(() => {
-      inputRef.current.focus()
-      inputRef.current.setSelectionRange(
-        inputRef.current.value.length,
-        inputRef.current.value.length
-      )
-    }, 10);
-  }
-
-  return (
-    <div
-      className={clsx(
-        'relative flex rounded-xl bg-ios-light-surface-2 dark:bg-ios-dark-surface-1',
-        isEdit && 'ring-1 ring-inset'
-      )}
-    >
-      <div className="h-14 w-14 shrink-0" aria-hidden="true" />
-      <div className="absolute left-0 top-0 flex h-14 w-14 items-center justify-center">
-        <div className="z-[2] flex h-8 w-8 items-center justify-center rounded-full bg-ios-light-surface-2 dark:bg-ios-dark-surface-1">
-          <Checkbox
-            name="checkbox-1"
-            checked={checked}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <div
-        className="flex grow flex-col p-3 pl-0"
-        onClick={handleClick}
-      >
-        <div className="-ml-2">
-          <div className="inline-flex h-6 cursor-default items-center rounded-full bg-transparent px-2 text-base text-gray-600 hover:bg-gray-200 dark:text-gray-400">
-            {/*{`3:30 PM`}*/}
-            {JSON.stringify(isEdit)}
-          </div>
-        </div>
-        <div>
-          {isEdit ? (
-            <TextareaAutosize
-              ref={inputRef}
-              readOnly={!isEdit}
-              defaultValue={value}
-              className="block w-full appearance-none bg-transparent text-lg font-medium text-gray-900 focus:outline-none dark:text-white"
-            />
-          ) : (
-            <div className="text-lg font-medium text-gray-900 dark:text-white">
-              {value}
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  )
 }
