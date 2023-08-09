@@ -34,9 +34,11 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended', // Make sure this is always the last element in the array.
   ],
-  plugins: ['react-refresh', 'tailwindcss'],
+  plugins: ['prettier', 'react-refresh', 'tailwindcss'],
   rules: {
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'react/no-unescaped-entities': 'off',
