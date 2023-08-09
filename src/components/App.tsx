@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Todo from '~/components/Todo';
-import { App as KonstaApp, Block, Button, Icon, Link, Navbar, NavbarBackLink, Page, Toolbar } from 'konsta/react';
+import { App, Block, Button, Icon, Link, Navbar, Page, Toolbar } from 'konsta/react';
 // import { StatusBar, Style } from '@capacitor/status-bar';
 import { Plus } from 'framework7-icons/react';
 
@@ -15,14 +15,12 @@ import { Plus } from 'framework7-icons/react';
 //   }
 // });
 
-export default function App() {
+export default function MyApp() {
   return (
-    <KonstaApp theme="ios" safeAreas>
+    <App theme="ios" safeAreas>
       <Page>
         <Navbar
-          transparent
           title="San Diego Trip 2023"
-          left={<NavbarBackLink />}
         />
         {/*<header className="fixed left-0 top-0 z-50 w-full shrink-0 bg-gray-200/50 translucent dark:bg-black/50">
           <div className="relative flex h-16 items-center px-3 hairline-b">
@@ -67,6 +65,6 @@ export default function App() {
           <div className="h-16 shrink-0" />
         </div>*/}
       </Page>
-    </KonstaApp>
+    </App>
   );
 }
