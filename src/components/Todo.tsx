@@ -259,7 +259,7 @@ function TodoItem({ value }: TodoItemProps) {
         inputRef.current.value.length,
         inputRef.current.value.length
       )
-    }, 50);
+    }, 10);
   }
 
   return (
