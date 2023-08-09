@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React, {
-  ChangeEvent, useEffect, useLayoutEffect, useRef,
+  ChangeEvent, useRef,
   useState,
 } from 'react';
 import { Block, BlockTitle, Checkbox, ListInput } from 'konsta/react';
@@ -242,19 +242,9 @@ interface TodoItemProps {
 }
 
 function TodoItem({ value }: TodoItemProps) {
-  const [input, setInput] = useState<HTMLTextAreaElement>(undefined);
+  const inputRef = useRef<HTMLTextAreaElement>();
   const [isEdit, setIsEdit] = useState(false);
   const [checked, setChecked] = useState(false);
-
-  useLayoutEffect(() => {
-    if (isEdit && input) {
-      input.focus();
-      input.setSelectionRange(
-        input.value.length,
-        input.value.length
-      );
-    }
-  }, [input, isEdit]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -263,6 +253,13 @@ function TodoItem({ value }: TodoItemProps) {
 
   const handleClick = () => {
     setIsEdit(true);
+    setTimeout(() => {
+      inputRef.current.focus()
+      inputRef.current.setSelectionRange(
+        inputRef.current.value.length,
+        inputRef.current.value.length
+      )
+    }, 50);
   }
 
   return (
@@ -295,7 +292,8 @@ function TodoItem({ value }: TodoItemProps) {
         <div>
           {isEdit ? (
             <TextareaAutosize
-              ref={setInput}
+              ref={inputRef}
+              readOnly={!isEdit}
               defaultValue={value}
               className="block w-full appearance-none bg-transparent text-lg font-medium text-gray-900 focus:outline-none dark:text-white"
             />
