@@ -40,7 +40,7 @@ const todoItems = [
 export default function Todo() {
   return (
     <div className="ui-timeline relative overflow-hidden bg-white dark:bg-gray-900">
-      <header className="sticky left-0 top-0 z-40 w-full shrink-0 border-b bg-gray-200/30 backdrop-blur-md dark:border-gray-700 dark:bg-black/30">
+      <header className="static w-full shrink-0 border-b bg-gray-200/30 backdrop-blur-md dark:border-gray-700 dark:bg-black/30">
         <div className="mx-auto max-w-screen-sm">
           <div className="flex h-12 items-center px-3">
             <div className="shrink-0">

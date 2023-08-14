@@ -34,11 +34,9 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:prettier/recommended', // Make sure this is always the last element in the array.
   ],
-  plugins: ['prettier', 'react-refresh', 'tailwindcss'],
+  plugins: ['react-refresh', 'tailwindcss'],
   rules: {
-    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'react/no-unescaped-entities': 'off',
@@ -46,5 +44,6 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     'tailwindcss/no-custom-classname': 'off',
     'tailwindcss/classnames-order': 'error',
+    'semi': 'error'
   },
 }
